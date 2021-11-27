@@ -2,6 +2,8 @@
 url=""
 # 模板路径
 template=/etc/v2csub/templates
+# 键值模板
+Defaultkeys=/etc/v2csub/defaultkeys
 # 缓存文件路径
 outputcache=/tmp/v2ccache
 # 输出路径

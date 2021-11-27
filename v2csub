@@ -45,17 +45,24 @@ else
 fi
 
 # 生成outbound
+declare -A arr
 for ((j=0; j<=i; j++)); do
-	echo -ne ${Decoderesult[$j]} | iconv | sed 's/ //g' | sed 's/,/\n/g' | sed 's/\"/V_/' | sed 's/\"/_Sub/' | sed 's/\"//g' > $outputcache
-	Key=( $(cat $outputcache | awk -F: '{print $1}') )
-	Value=( $(cat $outputcache | awk -F: '{print $2}') )
-	Stream=`cat $outputcache | grep V_net_Sub | awk -F: '{print $2}'`
-	line=$[ `sed -n -e '/V_ps_Sub/=' $outputcache` - 1 ]
-	Value[$line]=V${Value[$line]}
-	cp $templates/$Stream $outputcache
-	for k in "${!Key[@]}"; do
-		sed -i "s/${Key[$k]}/${Value[$k]}/" $outputcache
-	done		
+	echo -ne ${Decoderesult[$j]} | iconv | sed 's/ //g' | sed 's/,/\n/g' | sed 's/\"/V_/' | sed 's/\"/_Sub/' | sed 's/\"//g' | sed 's/:/=/g' > $outputcache
+	while IFS="=" read -r key val; do
+		arr[$key]=$val
+	done <$Defaultkeys
+
+	while IFS="=" read -r key val; do
+		arr[$key]=$val
+	done <$outputcache
+
+	arr[V_ps_Sub]=v${arr[V_ps_Sub]}
+	cp $templates/${arr[V_net_Sub]} $outputcache
+
+	for k in "${!arr[@]}"; do
+		sed -i "s/$k/${arr[$k]}/" $outputcache
+	done
+
 	cp $outputcache $outputdir/$j.json
 done
 
