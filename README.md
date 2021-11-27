@@ -47,8 +47,6 @@
 
 #### 最后执行 `v2ray -c gfw.json -confdir /tmp/v2csub` 即可成功运行
 
-#### 注意：若使用 nonCN.json 需修改nonCN.json，将服务器的地址加入直连
-
 
 
 
