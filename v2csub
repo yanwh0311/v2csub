@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# 读取配置文件
+source $HOME/.config/v2csub/config || source /etc/v2csub/config
+
+# 读取选项
+while getopts "u:t:o:n:h" opt; do
+	case $opt in
+		u) url=$OPTARG ;;
+		t) templates=$OPTARG ;;
+		o) outputdir=$OPTARG ;;
+		n) node=$OPTARG ;;
+		h) echo "-u url 
+	订阅地址
+-t string
+	outbound模板路径
+-o string
+	输出outbound json的的路径
+-n number
+	打印第n项节点，由0开始
+-h
+	打印此帮助" && exit ;;
+	esac
+done
+
+
+# 解码
+Nodelinks=( `curl $url |base64 -d | sed 's/vmess:\/\///g'` )
+for i in "${!Nodelinks[@]}"; do
+	Decoderesult[i]=`echo ${Nodelinks[$i]} | base64 -di | sed 's/{//g' | sed 's/}//g'`
+done
+
+# 输出单个节点用作参考
+if [ -n "$node" ];then
+	echo -ne ${Decoderesult[$node]} | iconv
+	exit
+fi
+
+# 备份文件
+if [[ -d $outputdir ]]; then
+	mkdir -p $outputdir-backup
+	mv -f $outputdir/* $outputdir-backup/
+else
+	mkdir -p $outputdir
+fi
+
+# 生成outbound
+for ((j=0; j<=i; j++)); do
+	echo -ne ${Decoderesult[$j]} | iconv | sed 's/ //g' | sed 's/,/\n/g' | sed 's/\"/V_/' | sed 's/\"/_Sub/' | sed 's/\"//g' > $outputcache
+	Key=( $(cat $outputcache | awk -F: '{print $1}') )
+	Value=( $(cat $outputcache | awk -F: '{print $2}') )
+	Stream=`cat $outputcache | grep V_net_Sub | awk -F: '{print $2}'`
+	line=$[ `sed -n -e '/V_ps_Sub/=' $outputcache` - 1 ]
+	Value[$line]=V${Value[$line]}
+	cp $templates/$Stream $outputcache
+	for k in "${!Key[@]}"; do
+		sed -i "s/${Key[$k]}/${Value[$k]}/" $outputcache
+	done		
+	cp $outputcache $outputdir/$j.json
+done
+
+

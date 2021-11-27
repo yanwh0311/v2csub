@@ -1,0 +1,128 @@
+{
+	"log": {
+		"access": "/tmp/v2ray-access.log",
+		"error": "/tmp/v2ray-error.olog",
+		"loglevel": "warning"
+	},
+	"inbounds": [
+		{
+			"port": 1080, 
+			"protocol": "socks", 
+			"sniffing": {
+				"enabled": true,
+				"destOverride": ["http", "tls"]
+			},
+			"settings": {
+				"udp": true,
+				"auth": "noauth"
+			}
+		},
+		{
+			"port": 1081, 
+			"protocol": "http", 
+			"sniffing": {
+				"enabled": true,
+				"destOverride": ["http", "tls"]
+			}
+		}
+	],
+	"outbounds": [
+		{
+			"tag": "direct",
+			"protocol": "freedom",
+			"settings": {
+				"domainStrategy": "UseIP"
+			}
+		},
+		{
+			"tag": "block",
+			"protocol": "blackhole",
+			"settings": {
+				"response": {
+					"type": "http"
+				}
+			}
+		}
+	],
+	"dns": {
+		"servers": [
+			{
+				"address": "1.0.0.1",
+				"port": 53,
+				"domains": [
+					"1.1.1.1/32",
+					"1.0.0.1/32",
+					"8.8.8.8/32",
+					"8.8.4.4/32",
+					"geosite:gfw",
+					"geosite:greatfire"
+				]
+			},
+			"localhost",
+			"1.0.0.1"
+		]
+	},
+	"routing": {
+		"domainStrategy": "AsIs",
+		"domainMatcher": "mph",
+		"rules": [
+			{ // 广告拦截
+				"type": "field", 
+				"domain": [
+					"geosite:category-ads-all"
+				],
+				"outboundTag": "block"
+			},
+			{ // BT 流量直连
+				"type": "field",
+				"protocol":["bittorrent"], 
+				"outboundTag": "direct"
+			},
+			{ // gfw 网址 均衡代理
+				"type": "field", 
+				"domains": [
+					"geosite:gfw",
+					"geosite:greatfire"
+				],
+				"balancerTag": "balancer"
+			},
+			{ // gfw ip 均衡代理
+				"type": "field", 
+				"ip": [
+					"1.1.1.1/32",
+					"1.0.0.1/32",
+					"8.8.8.8/32",
+					"8.8.4.4/32",
+					"geoip:telegram",
+					"geoip:cloudflare",
+					"geoip:cloudfront",
+					"geoip:facebook",
+					"geoip:fastly",
+					"geoip:google",
+					"geoip:netflix",
+					"geoip:twitter"
+				],
+				"balancerTag": "balancer"
+			},
+			{ // 默认直连
+				"type": "field", 
+				"network": "tcp,udp",
+				"outboundTag": "direct"
+			}
+		],
+		"balancers": [
+			{
+				"tag": "balancer",
+				"selector": [ "V" ],
+				"strategy": {
+					"type": "leastPing"
+				}
+			}
+		]
+	},
+	"observatory": { 
+		"subjectSelector": [ "V" ],
+		"probeURL": "api.v2fly.org",
+		"probeInterval": "30m"
+	}
+}

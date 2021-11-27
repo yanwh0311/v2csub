@@ -1,0 +1,11 @@
+# 订阅地址
+url=""
+# 模板路径
+template=/etc/v2csub/templates
+# 缓存文件路径
+outputcache=/tmp/v2ccache
+# 输出路径
+outputdir=/tmp/v2csub
+# 输出单个节点用作参考
+node=
+

@@ -1,0 +1,124 @@
+{
+	"log": {
+		"access": "/tmp/v2ray-access.log",
+		"error": "/tmp/v2ray-error.olog",
+		"loglevel": "warning"
+	},
+	"inbounds": [
+		{
+			"port": 1080, 
+			"protocol": "socks", 
+			"sniffing": {
+				"enabled": true,
+				"destOverride": ["http", "tls"]
+			},
+			"settings": {
+				"udp": true,
+				"auth": "noauth"
+			}
+		},
+		{
+			"port": 1081, 
+			"protocol": "http", 
+			"sniffing": {
+				"enabled": true,
+				"destOverride": ["http", "tls"]
+			}
+		}
+	],
+	"outbounds": [
+		{
+			"tag": "direct",
+			"protocol": "freedom",
+			"settings": {
+				"domainStrategy": "UseIP"
+			}
+		},
+		{
+			"tag": "block",
+			"protocol": "blackhole",
+			"settings": {
+				"response": {
+					"type": "http"
+				}
+			}
+		}
+	],
+	"dns": {
+		"servers": [
+			{
+				"address": "localhost",
+				"port": 53,
+				"domains": [
+					"223.5.5.5/32",
+					"119.29.29.29/32",
+					"180.76.76.76/32",
+					"114.114.114.114/32",
+					"geoip:cn",
+					"geoip:private"
+				]
+			},
+			"1.0.0.1"
+		]
+	},
+	"routing": {
+		"domainStrategy": "AsIs",
+		"domainMatcher": "mph",
+		"rules": [
+			{ // 广告拦截
+				"type": "field", 
+				"domain": [
+					"geosite:category-ads-all"
+				],
+				"outboundTag": "block"
+			},
+			{ // BT 流量直连
+				"type": "field",
+				"protocol":["bittorrent"], 
+				"outboundTag": "direct"
+			},
+			{ // 国内 网址 直连
+				"type": "field", 
+				"domains": [
+					"geosite:private",
+					"geosite:apple-cn",
+					"geosite:google-cn",
+					"geosite:tld-cn",
+					"geosite:category-games@cn"
+				],
+				"outboundTag": "direct"
+			},
+			{ // 国内 ip 直连
+				"type": "field", 
+				"ip": [
+					"223.5.5.5/32",
+					"119.29.29.29/32",
+					"180.76.76.76/32",
+					"114.114.114.114/32",
+					"geoip:cn",
+					"geoip:private"
+				],
+				"outboundTag": "direct"
+			},
+			{ // 默认代理
+				"type": "field", 
+				"network": "tcp,udp",
+				"balancerTag": "balancer"
+			}
+		],
+		"balancers": [
+			{
+				"tag": "balancer",
+				"selector": [ "0" ],
+				"strategy": {
+					"type": "leastPing"
+				}
+			}
+		]
+	},
+	"observatory": { 
+		"subjectSelector": [ "0" ],
+		"probeURL": "api.v2fly.org",
+		"probeInterval": "30m"
+	}
+}

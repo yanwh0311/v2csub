@@ -1,0 +1,14 @@
+[Unit]
+Description=Subscriber for V2ray-core 
+Documentation=v2csub -h
+After=network.target
+Before=v2ray.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/v2csub
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
