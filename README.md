@@ -47,6 +47,8 @@
 
 #### 最后执行 `v2ray -c gfw.json -confdir /tmp/v2csub` 即可成功运行
 
+#### socks默认代理端口为1080，http端口为1081
+
 
 
 
