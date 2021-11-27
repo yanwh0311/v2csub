@@ -9,19 +9,21 @@
 有以上两点为前提，图形界面已经不重要了。
 
 ### 简单说明
-增加执行权限
+增加执行权限 并按表格放置文件
 
 `chmod +x v2csub`
 
 
+| 文件 | 位置 |
+|-----| ---- |
+|v2csub|/usr/bin/|
+|config|/etc/v2csub/config 或 $HOME/.config/v2csub/config|
+|gfw.json|/etc/v2csub/gfw.json|
+|nonCN.json|/etc/v2csub/nonCN.json|
+|templates|/etc/v2csub/templates|
+|v2csub.service|/usr/lib/systemd/system/v2csub.service (可选)|
 
-脚本会优先读取`HOME/.config/v2csub/config`的配置文件
 
-若文件不存在则读取`/etc/v2csub/config`
-
-脚本默认输出模板为`/etc/v2csub/templates`
-
-请将此文件夹放到此路径或修改配置文件
 
 修改配置文件中url部分，填入订阅连接
 
@@ -36,6 +38,8 @@
 #### 详细参数可执行 `v2csub -h`
 
 #### 最后执行 `v2ray -c gfw.json -confdir /tmp/v2csub` 即可成功运行
+
+#### 注意：若使用 nonCN.json 需修改nonCN.json，将服务器的地址加入直连
 
 
 
