@@ -56,7 +56,7 @@ for ((j=0; j<=i; j++)); do
 		arr[$key]=$val
 	done <$outputcache
 
-	arr[V_ps_Sub]=v${arr[V_ps_Sub]}
+	arr[V_ps_Sub]=V${arr[V_ps_Sub]}
 	cp $templates/${arr[V_net_Sub]} $outputcache
 
 	for k in "${!arr[@]}"; do
