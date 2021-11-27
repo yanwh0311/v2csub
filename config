@@ -1,13 +1,10 @@
-# 订阅地址
-url=""
+# 订阅连接
+url="https://bigairport.icu/api/v1/client/subscribe?token=c8e1e62a39aaeeaf7c59e6d1ff2b66cc"
 # 模板路径
-template=/etc/v2csub/templates
+templates=/etc/v2csub/templates
 # 键值模板
 Defaultkeys=/etc/v2csub/defaultkeys
-# 缓存文件路径
+# 缓存
 outputcache=/tmp/v2ccache
 # 输出路径
 outputdir=/tmp/v2csub
-# 输出单个节点用作参考
-node=
-
