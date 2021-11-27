@@ -1,7 +1,8 @@
 [Unit]
 Description=Subscriber for V2ray-core 
-Documentation=v2csub -h
-After=network.target
+Documentation=https://github.com/yanwh0311/v2csub
+Wants=network-online.target
+After=network-online.target nss-lookup.target
 Before=v2ray.service
 
 [Service]
