@@ -31,7 +31,7 @@ Archlinux 用户
 
 | 文件 | 位置 |
 |-----| ---- |
-|v2csub|/usr/bin/|
+|v2csub|/usr/bin/v2csub|
 |config|/etc/v2csub/config 或 $HOME/.config/v2csub/config|
 |defaultkeys|/etc/v2csub/defaultkeys|
 |gfw.json|/etc/v2csub/gfw.json|
@@ -44,13 +44,13 @@ Archlinux 用户
 
 修改配置文件中url部分，填入订阅连接，并执行
 
->`v2csub`
+> v2csub
 
 即可订阅
 
 或使用参数
 
->`v2csub -u [订阅地址]`
+> v2csub -u [订阅地址]
 
 详细参数可执行 `v2csub -h`
 
