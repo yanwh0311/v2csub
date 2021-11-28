@@ -15,10 +15,18 @@
  
 * 默认为均衡模式（即自动选择响应最快的节点）
 
-### 简单说明
+
+### 安装
+
+Archlinux 用户
+
+> yay -S v2csub-git
+
+其它系统用户：
+
 增加执行权限 并按表格放置文件
 
-> `chmod +x v2csub`
+> chmod +x v2csub
 
 
 | 文件 | 位置 |
@@ -32,8 +40,9 @@
 |v2csub.service|/usr/lib/systemd/system/v2csub.service (可选)|
 
 
+### 运行
 
-修改配置文件中url部分，填入订阅连接
+修改配置文件中url部分，填入订阅连接，并执行
 
 >`v2csub`
 
@@ -47,7 +56,12 @@
 
 最后执行 `v2ray -c gfw.json -confdir /tmp/v2csub` 即可成功运行
 
-#### 或加入自启动 
+
+***socks默认代理端口为1080，http端口为1081***
+
+
+### 或加入自启动 
+
 修改v2ray服务 
 
 `#systemctl edit v2ray`  或直接修改 `/etc/systemd/system/v2ray.service.d/override.conf`
@@ -66,7 +80,6 @@
 
 > #systemctl start v2csub v2ray
 
-***socks默认代理端口为1080，http端口为1081***
 
 
 
