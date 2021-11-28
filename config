@@ -1,5 +1,5 @@
 # 订阅连接
-url="https://bigairport.icu/api/v1/client/subscribe?token=c8e1e62a39aaeeaf7c59e6d1ff2b66cc"
+url=""
 # 模板路径
 templates=/etc/v2csub/templates
 # 键值模板
