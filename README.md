@@ -43,16 +43,30 @@
 
 >`v2csub -u [订阅地址]`
 
-#### 详细参数可执行 `v2csub -h`
+详细参数可执行 `v2csub -h`
 
-#### 最后执行 `v2ray -c gfw.json -confdir /tmp/v2csub` 即可成功运行
+最后执行 `v2ray -c gfw.json -confdir /tmp/v2csub` 即可成功运行
 
 #### 或加入自启动 
-> #systemctl enable v2csub v2ray
+修改v2ray服务 
+
+`#systemctl edit v2ray`  或直接修改 `/etc/systemd/system/v2ray.service.d/override.conf`
+
+> [Service]
 > 
+> ExecStart=
+> 
+> ExecStart=/usr/bin/v2ray -config /etc/v2csub/gfw.json -confdir /tmp/v2csub/
+
+加入自启动项
+
+> #systemctl enable v2csub v2ray
+
+启动
+
 > #systemctl start v2csub v2ray
 
-#### socks默认代理端口为1080，http端口为1081
+***socks默认代理端口为1080，http端口为1081***
 
 
 
