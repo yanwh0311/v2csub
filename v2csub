@@ -47,12 +47,12 @@ fi
 # 生成outbound
 declare -A arr
 for ((j=0; j<=i; j++)); do
-	echo -ne ${Decoderesult[$j]} | iconv | sed 's/ //g' | sed 's/,/\n/g' | sed 's/\"/V_/' | sed 's/\"/_Sub/' | sed 's/\"//g' | sed 's/:/=/g' > $outputcache
+	echo -ne ${Decoderesult[$j]} | iconv | sed 's/ //g' | sed 's/,/\n/g' | sed 's/\"/V_/' | sed 's/\"/_Sub/' | sed 's/\"//g' > $outputcache
 	while IFS="=" read -r key val; do
 		arr[$key]=$val
 	done <$Defaultkeys
 
-	while IFS="=" read -r key val; do
+	while IFS=":" read -r key val; do
 		arr[$key]=$val
 	done <$outputcache
 
