@@ -15,6 +15,7 @@
  
 * 默认为均衡模式（即自动选择响应最快的节点）
 
+<br/> 
 
 ### 安装
 
@@ -22,23 +23,20 @@ Archlinux 用户
 
 > yay -S v2csub-git
 
+<br/> 
+
 其它系统用户：
 
-增加执行权限 并按表格放置文件
+增加执行权限
 
 > chmod +x v2csub
 
+并将 `config` 置于 `/etc/v2csub/config` 或 `$HOME/.config/v2csub/config`
 
-| 文件 | 位置 |
-|-----| ---- |
-|v2csub|/usr/bin/v2csub|
-|config|/etc/v2csub/config 或 $HOME/.config/v2csub/config|
-|defaultkeys|/etc/v2csub/defaultkeys|
-|gfw.json|/etc/v2csub/gfw.json|
-|nonCN.json|/etc/v2csub/nonCN.json|
-|templates|/etc/v2csub/templates|
-|v2csub.service|/usr/lib/systemd/system/v2csub.service (可选)|
+其它文件根据 `config` 设置安放
 
+
+<br/> 
 
 ### 运行
 
@@ -59,6 +57,7 @@ Archlinux 用户
 
 ***socks默认代理端口为1080，http端口为1081***
 
+<br/> 
 
 ### 或加入自启动 
 
@@ -81,7 +80,7 @@ Archlinux 用户
 > #systemctl start v2csub v2ray
 
 
-
+<br/> 
 
 
 ### FQA
