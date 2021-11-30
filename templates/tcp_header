@@ -1,0 +1,46 @@
+{
+	"outbounds": [
+	{
+		"sendThrough": "0.0.0.0",
+			"protocol": "vmess",
+			"settings": {
+				"vnext": [
+				{
+					"address": "V_add_Sub",
+					"port": V_port_Sub,
+					"users": [
+					{
+						"id": "V_id_Sub",
+						"alterId": V_aid_Sub,
+						"security": "auto"
+					}
+					]
+				}
+				]
+			},
+			"tag": "V_ps_Sub",
+			"streamSettings": { 
+				"network": "V_net_Sub",
+				"security": "V_scy_Sub",
+				"tcpSettings": {
+					"header": {
+						"type": "V_type_Sub",
+						"request": {
+							"path": [
+								"V_path_Sub"
+							],
+							"headers": {
+								"Host": [
+									"V_host_Sub"
+								]
+							}
+						}
+					},
+					"tlsSettings": {
+						"serverName": "V_sni_Sub"
+					}
+				}
+			}
+	}
+	]
+}
