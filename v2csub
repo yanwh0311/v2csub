@@ -57,7 +57,12 @@ for ((j=0; j<=i; j++)); do
 	done <$outputcache
 
 	arr[V_ps_Sub]=V${arr[V_ps_Sub]}
-	cp $templates/${arr[V_net_Sub]} $outputcache
+        if [[ ${arr[V_net_Sub]} == "tcp"  ]] && [[ ${arr[V_host_Sub]} == "http" ]] ; then
+                cp $templates/tcp_header $outputcache
+        else
+                cp $templates/${arr[V_net_Sub]} $outputcache
+        fi
+
 
 	for k in "${!arr[@]}"; do
 		sed -i "s/$k/${arr[$k]}/" $outputcache
