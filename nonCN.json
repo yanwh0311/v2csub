@@ -109,7 +109,7 @@
 		"balancers": [
 			{
 				"tag": "balancer",
-				"selector": [ "0" ],
+				"selector": [ "V" ],
 				"strategy": {
 					"type": "leastPing"
 				}
@@ -117,7 +117,7 @@
 		]
 	},
 	"observatory": { 
-		"subjectSelector": [ "0" ],
+		"subjectSelector": [ "V" ],
 		"probeURL": "api.v2fly.org",
 		"probeInterval": "30m"
 	}
