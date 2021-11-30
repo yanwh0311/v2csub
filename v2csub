@@ -57,7 +57,7 @@ for ((j=0; j<=i; j++)); do
 	done <$outputcache
 
 	arr[V_ps_Sub]=V${arr[V_ps_Sub]}
-        if [[ ${arr[V_net_Sub]} == "tcp"  ]] && [[ ${arr[V_host_Sub]} == "http" ]] ; then
+        if [[ ${arr[V_net_Sub]} == "tcp"  ]] && [[ ${arr[V_type_Sub]} == "http" ]] ; then
                 cp $templates/tcp_header $outputcache
         else
                 cp $templates/${arr[V_net_Sub]} $outputcache
