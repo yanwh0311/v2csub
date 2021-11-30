@@ -19,13 +19,18 @@
 				]
 			},
 			"tag": "V_ps_Sub",
-			"streamSettings": { 
-				"network": "V_net_Sub",
-				"security": "V_scy_Sub",
-				"tlsSettings": {
-					"serverName": "V_sni_Sub"
-				}
-			}
+                        "streamSettings": { 
+                                "network": "V_net_Sub",
+                                "security": "V_scy_Sub",
+                                "tcpSettings": {
+                                        "header": {
+                                                "type": "V_type_Sub"
+                                        }       
+                                },
+                                "tlsSettings": {
+                                        "serverName": "V_sni_Sub"
+                                }
+                        }
 	}
 	]
 }
