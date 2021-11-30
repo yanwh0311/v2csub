@@ -19,6 +19,12 @@
 
 ### 安装
 
+本脚本默认分流依赖于 [v2ray-rules-dat](https://github.com/Loyalsoldier/v2ray-rules-dat)
+
+如果不喜欢需更改分流设置
+
+<br/> 
+
 Archlinux 用户
 
 > yay -S v2csub-git
