@@ -48,7 +48,7 @@ Archlinux 用户
 
 详细参数请查看 `v2csub -h`
 
-最后运行 `v2ray -c gfw.json -confdir /tmp/v2csub` 即可科学上网
+最后运行 `v2ray -c /etc/v2csub/gfw.json -confdir /tmp/v2csub` 即可科学上网
 
 
 ***socks默认代理端口为1080，http端口为1081***
