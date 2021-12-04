@@ -118,7 +118,7 @@
 	},
 	"observatory": { 
 		"subjectSelector": [ "V" ],
-		"probeURL": "api.v2fly.org",
+		"probeURL": "https://api.v2fly.org/checkConnection.svgz",
 		"probeInterval": "30m"
 	}
 }
