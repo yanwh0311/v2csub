@@ -93,7 +93,7 @@ Archlinux 用户
  
 * #### 如何设置自动测速间隔？
 
-修改 `gfw.json` 或 `nonCN.json` 中 `probeInterval` 的值即可
+修改 `gfw.json` 或 `nonCN.json` 中 `probeInterval` 的值即可,间隔为每个节点的间隔。并非全部节点循环一次的间隔。
 
 * #### 如果想临时重新测速换节点怎么办？
 
