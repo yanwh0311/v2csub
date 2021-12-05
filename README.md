@@ -93,7 +93,7 @@ Archlinux 用户
  
 * #### 如何设置接连观察时间间隔？
 
-修改 `gfw.json` 或 `nonCN.json` 中 `probeInterval` 的值即可,间隔为每个节点的间隔，并非全部节点循环一次的间隔。
+修改 `gfw.json` 或 `nonCN.json` 中 `probeInterval` 的值即可。间隔为每个节点的间隔，并非全部节点循环一次的间隔(应该是v2ray的bug，等修复)。
 
 * #### 我的机场很稳定，我只想用一个节点或只想用某个地区的节点
 
