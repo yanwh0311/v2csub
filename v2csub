@@ -25,7 +25,7 @@ done
 
 
 # 解码
-Nodelinks=( `curl $url |base64 -d | sed 's/vmess:\/\///g'` )
+Nodelinks=( `curl -A "v2rayNG/1.7.3" $url |base64 -d | sed 's/vmess:\/\///g'` )
 for i in "${!Nodelinks[@]}"; do
 	Decoderesult[i]=`echo ${Nodelinks[$i]} | base64 -di | sed 's/{//g' | sed 's/}//g'`
 done
