@@ -73,6 +73,14 @@ Archlinux 用户
 > 
 > ExecStart=/usr/bin/v2ray -config /etc/v2csub/gfw.json -confdir /tmp/v2csub/
 
+v2ray 5.0版本以上改为：
+
+> [Service]
+> 
+> ExecStart=
+> 
+> ExecStart=/usr/bin/v2ray run -config /etc/v2csub/gfw.json -confdir /tmp/v2csub/
+
 加入自启动项
 
 > #systemctl enable v2csub v2ray
